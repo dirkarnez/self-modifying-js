@@ -1,0 +1,25 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <script src="library.js"></script>
+    <script>
+        hello = (function(hello_original) {
+            return function() {
+                var alert_original = alert;
+                var local;
+                alert = function(local) {
+                    local = local;
+                    console.log("i get local = " + local);
+                };
+                hello_original(...arguments);
+                alert = alert_original;
+            }
+        })(hello);
+
+        hello("hello world");
+    </script>
+</body>
+</html>
